@@ -35,4 +35,7 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    qvapp.svg
+    qvapp.desktop \
+    qvapp.svg \
+    qvapp.png
+
