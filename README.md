@@ -5,13 +5,11 @@ qv
 Overview
 --------
 
-__qv__ is a simple puzzle game made with _[Qt Quick][1]_. For now, __it is under
-construction__. __qv__ will be support _MS Windows_, _Linux_, _Android_ and
+__qv__ is a simple puzzle game made with _[Qt Quick][1]_. For now, _it is under
+construction_. __qv__ will be support _MS Windows_, _Linux_, _Android_ and
 maybe _Symbian_.
 
-Following is demo video.
-
-<object width="400" height="255"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=21293454&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=21293454&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="400" height="255"></embed></object><p><a href="http://vimeo.com/21293454">qv, feature completed version.</a> from <a href="http://vimeo.com/user3619634">khris</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+[This][2] is demo video.
 
 
 Licence
@@ -31,3 +29,4 @@ Author
 
 
 [1]: http://doc.qt.nokia.com/4.7/qtquick.html
+[2]: http://vimeo.com/21293454
