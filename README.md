@@ -11,11 +11,7 @@ maybe _Symbian_.
 
 Following is demo video.
 
-<iframe src="http://player.vimeo.com/video/21293454" width="400" 
-height="300" frameborder="0"></iframe><p><a 
-href="http://vimeo.com/21293454">qv, feature completed version.</a> from 
-<a href="http://vimeo.com/user3619634">khris</a> on <a 
-href="http://vimeo.com">Vimeo</a>.</p>
+<object width="400" height="255"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=21293454&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=21293454&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="400" height="255"></embed></object><p><a href="http://vimeo.com/21293454">qv, feature completed version.</a> from <a href="http://vimeo.com/user3619634">khris</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 
 
 Licence
