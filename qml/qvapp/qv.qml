@@ -5,8 +5,8 @@ import "core.js" as Core
 Rectangle {
     id: base
 
-    width: 640
-    height: 360
+    width: 800
+    height: 480
     color: "#333333"
 
     Item {

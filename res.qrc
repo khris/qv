@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/qvapp/Block.qml</file>
+        <file>qml/qvapp/core.js</file>
+        <file>qml/qvapp/qv.qml</file>
+        <file>qml/qvapp/res/0.png</file>
+        <file>qml/qvapp/res/1.png</file>
+        <file>qml/qvapp/res/2.png</file>
+        <file>qml/qvapp/res/3.png</file>
+        <file>qml/qvapp/res/dust.png</file>
+    </qresource>
+</RCC>
