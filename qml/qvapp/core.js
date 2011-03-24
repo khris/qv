@@ -22,7 +22,7 @@ function initBoard() {
 
     for(var col = 0; col < sideLen; ++col) {
         for(var row = 0; row < sideLen; ++row) {
-            var newBlock = blockComponent.createObject(board)
+            var newBlock = blockComponent.createObject(container)
 
             if(newBlock == null) {
                 console.log("Error: while create block object")
@@ -76,35 +76,41 @@ function rotateTable() {
 function floodFill(clicked) {
     if(!clicked) {
         deselectAll()
-    } else if(clicked.selected) {
+        return
+    }
+
+    if(clicked.selected) {
         destroySelected()
-    } else {
-        deselectAll()
+        return
+    }
 
-        var queue = [table[clicked.col][clicked.row]]
-        var check = function(block) {
-            return block && block.selected == false && block.type == clicked.type
-        }
+    deselectAll()
 
-        while(queue.length > 0) {
-            var curr = queue.shift()
-            if(curr.type == clicked.type) {
-                var lBlock = curr.col
-                while(lBlock-1 >= 0 && check(table[lBlock-1][curr.row])) { --lBlock }
+    var queue = [table[clicked.col][clicked.row]]
+    var check = function(block) {
+        return block && block.selected === false && block.type == clicked.type
+    }
 
-                var rBlock = curr.col
-                while(rBlock+1 < sideLen && check(table[rBlock+1][curr.row])) { ++rBlock }
+    while(queue.length > 0) {
+        var curr = queue.shift()
 
-                for(var col = lBlock; col <= rBlock; ++col) {
-                    table[col][curr.row].selected = true;
-                    if(curr.row-1 >= 0 && check(table[col][curr.row-1])) {
-                        queue.push(table[col][curr.row-1])
-                    }
-                    if(curr.row+1 < sideLen && check(table[col][curr.row+1])) {
-                        queue.push(table[col][curr.row+1])
-                    }
-                }
-            }
+        if(curr.type != clicked.type)
+            continue
+
+        var lBlock = curr.col
+        while(lBlock-1 >= 0 && check(table[lBlock-1][curr.row])) { --lBlock }
+
+        var rBlock = curr.col
+        while(rBlock+1 < sideLen && check(table[rBlock+1][curr.row])) { ++rBlock }
+
+        for(var col = lBlock; col <= rBlock; ++col) {
+            table[col][curr.row].selected = true;
+
+            if(curr.row-1 >= 0 && check(table[col][curr.row-1]))
+                queue.push(table[col][curr.row-1])
+
+            if(curr.row+1 < sideLen && check(table[col][curr.row+1]))
+                queue.push(table[col][curr.row+1])
         }
     }
 }

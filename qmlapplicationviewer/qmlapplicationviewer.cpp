@@ -116,7 +116,7 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
 
     Qt::WidgetAttribute attribute;
     switch (orientation) {
-#if 1 //QT_VERSION < 0x040702
+#if 1 // QT_VERSION < 0x040702
     // Qt < 4.7.2 does not yet have the Qt::WA_*Orientation attributes
     case ScreenOrientationLockPortrait:
         attribute = static_cast<Qt::WidgetAttribute>(128);
@@ -150,6 +150,8 @@ void QmlApplicationViewer::showExpanded()
     showFullScreen();
 #elif defined(Q_WS_MAEMO_5)
     showMaximized();
+#elif defined(Q_OS_ANDROID)
+    showFullScreen();
 #else
     show();
 #endif

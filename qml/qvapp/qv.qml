@@ -7,25 +7,27 @@ Rectangle {
 
     width: 800
     height: 480
+
     color: "#333333"
 
     Item {
-        id: container
-        state: ""
+        id: board
 
         width: 300
         height: 300
 
-        anchors.right: parent.right
-        anchors.rightMargin: y - parent.y
-        anchors.verticalCenter: parent.verticalCenter
+        anchors {
+            right: base.right
+            rightMargin: y - base.y
+            verticalCenter: base.verticalCenter
+        }
 
         property int rotationCount: 0
         property int lastRotationCount: 0
 
         Item {
-            id: board
-            anchors.fill: parent
+            id: container
+            anchors.fill: board
         }
 
         Timer {
@@ -54,8 +56,8 @@ Rectangle {
 
                     ScriptAction {
                         script: {
-                            container.lastRotationCount = container.rotationCount
-                            container.state = "rotated"
+                            board.lastRotationCount = board.rotationCount
+                            board.state = "rotated"
                         }
                     }
                 }
@@ -77,7 +79,7 @@ Rectangle {
 
                 SequentialAnimation {
                     PauseAnimation { duration: 200 }
-                    ScriptAction { script: { container.state = "" } }
+                    ScriptAction { script: { board.state = "" } }
                 }
             }
         ]
@@ -86,21 +88,20 @@ Rectangle {
             State {
                 name: "rotating"
                 PropertyChanges {
-                    target: container
-                    rotation: container.rotationCount * 90
+                    target: board
+                    rotation: board.rotationCount * 90
                 }
             },
             State {
                 name: "rotated"
                 PropertyChanges {
-                    target: container
-                    rotation: container.lastRotationCount * 90
+                    target: board
+                    rotation: board.lastRotationCount * 90
                 }
             },
             State {
                 name: "aligning"
             }
-
         ]
 
         MouseArea {
@@ -110,26 +111,26 @@ Rectangle {
 
             onClicked: {
                 if(mouse.button == Qt.RightButton) {
-                    if(container.state != "aligning") {
+                    if(board.state != "aligning") {
                         Core.deselectAll()
-                        container.rotationCount = (parent.rotationCount + 1) % 4
-                        container.state = "rotating"
+                        board.rotationCount = (parent.rotationCount + 1) % 4
+                        board.state = "rotating"
                     }
                 } else if(mouse.button == Qt.LeftButton) {
-                    switch(container.state) {
+                    switch(board.state) {
                         case "aligning":
                         case "rotating": {
                             break
                         }
                         case "rotated": {
                             watingRotation.stop()
-                            Core.floodFill(board.childAt(mouse.x, mouse.y))
+                            Core.floodFill(container.childAt(mouse.x, mouse.y))
                             Core.rotateTable()
                             Core.applyGravity()
                             break
                         }
                         default: {
-                            Core.floodFill(board.childAt(mouse.x, mouse.y))
+                            Core.floodFill(container.childAt(mouse.x, mouse.y))
                             Core.applyGravity()
                             break
                         }
@@ -146,7 +147,7 @@ Rectangle {
         color: "#ffffff"
         text: "엘린 옷벗기는 발칙한 게임"
         anchors.bottom: parent.bottom
-        anchors.top: container.bottom
+        anchors.top: board.bottom
         font.family: "Malgun Gothic"
         font.pointSize: 17
         font.bold: true
