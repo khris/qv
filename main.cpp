@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockLandscape);
-    viewer.setMainQmlFile(QLatin1String(":/qml/qvapp/qv.qml"));
+    viewer.setMainQmlFile(QLatin1String("qrc:/qml/qvapp/qv.qml"));
     viewer.showExpanded();
 
     return app.exec();

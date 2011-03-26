@@ -93,7 +93,7 @@ QmlApplicationViewer::~QmlApplicationViewer()
 void QmlApplicationViewer::setMainQmlFile(const QString &file)
 {
     m_d->mainQmlFile = QmlApplicationViewerPrivate::adjustPath(file);
-    setSource(QUrl::fromLocalFile(m_d->mainQmlFile));
+    setSource(QUrl(m_d->mainQmlFile));
 }
 
 void QmlApplicationViewer::addImportPath(const QString &path)
@@ -116,7 +116,19 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
 
     Qt::WidgetAttribute attribute;
     switch (orientation) {
-#if 1 // QT_VERSION < 0x040702
+#if QT_VERSION < 0x040702
+    // Qt < 4.7.2 does not yet have the Qt::WA_*Orientation attributes
+    case ScreenOrientationLockPortrait:
+        attribute = static_cast<Qt::WidgetAttribute>(128);
+        break;
+    case ScreenOrientationLockLandscape:
+        attribute = static_cast<Qt::WidgetAttribute>(129);
+        break;
+    default:
+    case ScreenOrientationAuto:
+        attribute = static_cast<Qt::WidgetAttribute>(130);
+        break;
+#elif defined(Q_OS_ANDROID)
     // Qt < 4.7.2 does not yet have the Qt::WA_*Orientation attributes
     case ScreenOrientationLockPortrait:
         attribute = static_cast<Qt::WidgetAttribute>(128);
