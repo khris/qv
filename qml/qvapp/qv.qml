@@ -106,14 +106,14 @@ Rectangle {
 
         MouseArea {
             id: mouseArea
-            anchors.fill: parent
+            anchors.fill: board
             acceptedButtons: Qt.LeftButton | Qt.RightButton
 
             onClicked: {
                 if(mouse.button == Qt.RightButton) {
                     if(board.state != "aligning") {
                         Core.deselectAll()
-                        board.rotationCount = (parent.rotationCount + 1) % 4
+                        board.rotationCount = (board.rotationCount + 1) % 4
                         board.state = "rotating"
                     }
                 } else if(mouse.button == Qt.LeftButton) {

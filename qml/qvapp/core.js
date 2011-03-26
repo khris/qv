@@ -45,7 +45,7 @@ function initBoard() {
 }
 
 function rotateTable() {
-    for(var count = 0; count < container.rotationCount; ++count) {
+    for(var count = 0; count < board.rotationCount; ++count) {
         for(var col = 0; col < sideLen-1; ++col) {
             for(var row = col+1; row < sideLen; ++row) {
                 var temp = table[col][row]
@@ -70,7 +70,7 @@ function rotateTable() {
         }
     }
 
-    container.lastRotationCount = container.rotationCount = 0
+    board.lastRotationCount = board.rotationCount = 0
 }
 
 function floodFill(clicked) {
@@ -136,7 +136,7 @@ function destroySelected() {
 }
 
 function applyGravity() {
-    container.state = "aligning"
+    board.state = "aligning"
 
     var needAligning = false
 
@@ -159,5 +159,5 @@ function applyGravity() {
     }
 
     if(!needAligning)
-        container.state = ""
+        board.state = ""
 }
