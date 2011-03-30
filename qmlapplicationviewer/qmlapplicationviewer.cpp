@@ -147,12 +147,21 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
 void QmlApplicationViewer::showExpanded()
 {
 #ifdef Q_OS_SYMBIAN
+    setResizeMode(QDeclarativeView::SizeRootObjectToView);
     showFullScreen();
 #elif defined(Q_WS_MAEMO_5)
+    setResizeMode(QDeclarativeView::SizeRootObjectToView);
     showMaximized();
 #elif defined(Q_OS_ANDROID)
+    setResizeMode(QDeclarativeView::SizeRootObjectToView);
     showFullScreen();
 #else
+    Qt::WindowFlags flags = Qt::MSWindowsFixedSizeDialogHint
+            | Qt::CustomizeWindowHint
+            | Qt::WindowCloseButtonHint
+            | Qt::WindowMinimizeButtonHint;
+    setWindowFlags(flags);
+    setResizeMode(QDeclarativeView::SizeViewToRootObject);
     show();
 #endif
 }
