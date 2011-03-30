@@ -91,6 +91,8 @@ function floodFill(clicked) {
         return block && block.selected === false && block.type == clicked.type
     }
 
+    var selectedCount = 0
+
     while(queue.length > 0) {
         var curr = queue.shift()
 
@@ -105,6 +107,7 @@ function floodFill(clicked) {
 
         for(var col = lBlock; col <= rBlock; ++col) {
             table[col][curr.row].selected = true;
+            ++selectedCount;
 
             if(curr.row-1 >= 0 && check(table[col][curr.row-1]))
                 queue.push(table[col][curr.row-1])
@@ -113,6 +116,9 @@ function floodFill(clicked) {
                 queue.push(table[col][curr.row+1])
         }
     }
+
+    if(selectedCount <= 1)
+        clicked.selected = false
 }
 
 function deselectAll() {

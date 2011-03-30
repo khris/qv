@@ -116,7 +116,7 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
 
     Qt::WidgetAttribute attribute;
     switch (orientation) {
-#if QT_VERSION < 0x040702
+#if (QT_VERSION < 0x040702) || defined(Q_OS_ANDROID)
     // Qt < 4.7.2 does not yet have the Qt::WA_*Orientation attributes
     case ScreenOrientationLockPortrait:
         attribute = static_cast<Qt::WidgetAttribute>(128);
@@ -128,19 +128,7 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
     case ScreenOrientationAuto:
         attribute = static_cast<Qt::WidgetAttribute>(130);
         break;
-#elif defined(Q_OS_ANDROID)
-    // Qt < 4.7.2 does not yet have the Qt::WA_*Orientation attributes
-    case ScreenOrientationLockPortrait:
-        attribute = static_cast<Qt::WidgetAttribute>(128);
-        break;
-    case ScreenOrientationLockLandscape:
-        attribute = static_cast<Qt::WidgetAttribute>(129);
-        break;
-    default:
-    case ScreenOrientationAuto:
-        attribute = static_cast<Qt::WidgetAttribute>(130);
-        break;
-#else // QT_VERSION < 0x040702
+#else // (QT_VERSION < 0x040702) || defined(Q_OS_ANDROID)
     case ScreenOrientationLockPortrait:
         attribute = Qt::WA_LockPortraitOrientation;
         break;
@@ -151,7 +139,7 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
     case ScreenOrientationAuto:
         attribute = Qt::WA_AutoOrientation;
         break;
-#endif // QT_VERSION < 0x040702
+#endif // (QT_VERSION < 0x040702) || defined(Q_OS_ANDROID)
     };
     setAttribute(attribute, true);
 }
