@@ -34,7 +34,7 @@ SOURCES += main.cpp
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
-android {
+android-g++ {
     OTHER_FILES += \
         android/src/eu/licentia/necessitas/industrius/QtSurface.java \
         android/src/eu/licentia/necessitas/industrius/QtApplication.java \
