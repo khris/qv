@@ -9,12 +9,14 @@ var blockComponent = Qt.createComponent(blockSrc)
 var table = new Array(sideLen)
 
 
-function initBoard() {
+function initGame() {
     if(blockComponent.status != Component.Ready) {
         console.log("Error: blockComponent is not ready")
         console.log(blockComponent.errorString())
         return false
     }
+
+    board.score = 0
 
     for(var i = 0; i < sideLen; ++i) {
         table[i] = new Array(sideLen)
@@ -136,6 +138,7 @@ function destroySelected() {
             if(table[col][row] && table[col][row].selected) {
                 table[col][row].dead = true
                 table[col][row] = null
+                board.score += 10
             }
         }
     }

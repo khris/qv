@@ -15,12 +15,9 @@ Rectangle {
 
         width: 300
         height: 300
+        anchors.centerIn: parent
 
-        anchors {
-            right: base.right
-            rightMargin: y - base.y
-            verticalCenter: base.verticalCenter
-        }
+        property int score: 0
 
         property int rotationCount: 0
         property int lastRotationCount: 0
@@ -140,21 +137,52 @@ Rectangle {
         }
     }
 
-    Text {
-        id: rotationCountText
-        x: 310
-        width: 80
-        color: "#ffffff"
-        text: "엘린 옷벗기는 발칙한 게임"
-        anchors.bottom: parent.bottom
-        anchors.top: board.bottom
-        font.family: "Malgun Gothic"
-        font.pointSize: 17
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
+    Row {
+        id: scoreWidget
+
+        width: board.width
+
+        anchors {
+            top: board.bottom
+            topMargin: 10
+            horizontalCenter: board.horizontalCenter
+        }
+
+        Text {
+            id: label
+
+            text: "Score"
+
+            color: "#ffffff"
+            font {
+                family: "Malgun Gothic"
+                pointSize: 17
+                bold: true
+            }
+
+            verticalAlignment: "AlignVCenter"
+            horizontalAlignment: "AlignLeft"
+        }
+
+        Text {
+            id: scoreText
+
+            text: board.score
+
+            width: parent.width - label.width
+            color: "#ffffff"
+            font {
+                family: "Malgun Gothic"
+                pointSize: 17
+                bold: true
+            }
+
+            verticalAlignment: "AlignVCenter"
+            horizontalAlignment: "AlignRight"
+        }
     }
 
     Component.onCompleted: {
-        Core.initBoard()
+        Core.initGame()
     }
 }
