@@ -133,21 +133,23 @@ function deselectAll() {
 }
 
 function destroySelected() {
-    var destroyed = false
+    var destroyedNum = 0
 
     for (var col = 0; col < sideLen; ++col) {
         for (var row = 0; row < sideLen; ++row) {
             if (table[col][row] && table[col][row].selected) {
                 table[col][row].dead = true
                 table[col][row] = null
-                board.score += 10
-                destroyed = true
+                destroyedNum += 1
             }
         }
     }
 
-    if (destroyed)
+    if (destroyedNum > 0) {
         comboCounter.count += 1
+        var scorePerBlock = 10 + ((comboCounter.count - 1) * 5)
+        board.score += scorePerBlock * destroyedNum
+    }
 }
 
 function applyGravity() {
