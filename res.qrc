@@ -8,5 +8,6 @@
         <file>qml/qvapp/res/2.png</file>
         <file>qml/qvapp/res/3.png</file>
         <file>qml/qvapp/res/dust.png</file>
+        <file>qml/qvapp/Counter.qml</file>
     </qresource>
 </RCC>

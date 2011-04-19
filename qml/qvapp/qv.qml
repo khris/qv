@@ -182,6 +182,12 @@ Rectangle {
         }
     }
 
+    Counter {
+        id: comboCounter
+        x: 49
+        y: 303
+    }
+
     Component.onCompleted: {
         Core.initGame()
     }
