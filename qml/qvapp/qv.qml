@@ -16,6 +16,7 @@ Rectangle {
         width: 300
         height: 300
         anchors.centerIn: parent
+        anchors.verticalCenterOffset: -10
 
         property int score: 0
 
@@ -30,7 +31,7 @@ Rectangle {
         Timer {
             id: watingRotation
 
-            interval: 600
+            interval: 250
             repeat: false
             running: false
 
@@ -44,13 +45,13 @@ Rectangle {
             Transition {
                 from: "*"
                 to: "rotating"
-
                 SequentialAnimation {
+                    ScriptAction { script: { watingRotation.stop() } }
                     RotationAnimation {
+                        easing.type: Easing.InOutCubic
                         duration: 200
                         direction: RotationAnimation.Clockwise
                     }
-
                     ScriptAction {
                         script: {
                             board.lastRotationCount = board.rotationCount
@@ -62,18 +63,11 @@ Rectangle {
             Transition {
                 from: "rotating"
                 to: "rotated"
-
-                ScriptAction {
-                    script: {
-                        watingRotation.stop()
-                        watingRotation.start()
-                    }
-                }
+                ScriptAction { script: { watingRotation.restart() } }
             },
             Transition {
                 from: "*"
                 to: "aligning"
-
                 SequentialAnimation {
                     PauseAnimation { duration: 200 }
                     ScriptAction { script: { board.state = "" } }
@@ -146,7 +140,6 @@ Rectangle {
 
         anchors {
             top: board.bottom
-            topMargin: 10
             horizontalCenter: board.horizontalCenter
         }
 
