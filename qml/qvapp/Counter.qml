@@ -35,7 +35,7 @@ Item {
         State {
             name: "countdown"
             when: base.count > 0
-            PropertyChanges { target: countText; anchors.topMargin: -60 }
+            PropertyChanges { target: countText; anchors.topMargin: -30 }
             PropertyChanges { target: countText; opacity: 0.0 }
         }
     ]
@@ -46,6 +46,7 @@ Item {
         text: base.count + " Combo"
 
         anchors.top: base.top
+        anchors.topMargin: 30
 
         horizontalAlignment: Text.AlignRight
         verticalAlignment: Text.AlignVCenter

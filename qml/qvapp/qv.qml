@@ -5,8 +5,8 @@ import "core.js" as Core
 Rectangle {
     id: base
 
-    width: 800
-    height: 480
+    width: 640
+    height: 360
 
     color: "#333333"
 
@@ -137,6 +137,8 @@ Rectangle {
         }
     }
 
+
+
     Row {
         id: scoreWidget
 
@@ -184,8 +186,9 @@ Rectangle {
 
     Counter {
         id: comboCounter
-        x: 49
-        y: 303
+
+        anchors.top: board.top
+        anchors.right: board.left
     }
 
     Component.onCompleted: {
