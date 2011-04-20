@@ -34,11 +34,13 @@ Item {
         source: "res/dust.png"
 
         angle: 270; angleDeviation: 360
-        velocity: 50; velocityDeviation: 40
+        velocity: 80; velocityDeviation: 60
         emissionRate: 0
+        fadeInDuration: 200; fadeOutDuration: 300
+        lifeSpan: 500
 
         ParticleMotionGravity {
-            acceleration:50; xattractor: 0; yattractor: 1000
+            acceleration:100; xattractor: 0; yattractor: 1000
         }
     }
 

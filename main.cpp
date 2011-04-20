@@ -7,8 +7,13 @@ int main(int argc, char *argv[])
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockLandscape);
+
+#ifdef Q_OS_SYMBIAN
     viewer.setMainQmlFile(QLatin1String("qrc:/qml/qvapp/qv.qml"));
     viewer.setSource(QUrl(QLatin1String("qrc:/qml/qvapp/qv.qml")));
+#else
+    viewer.setMainQmlFile(QLatin1String("qml/qvapp/qv.qml"));
+#endif
 
 #ifdef Q_OS_SYMBIAN
     viewer.setResizeMode(QDeclarativeView::SizeRootObjectToView);
