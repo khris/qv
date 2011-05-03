@@ -17,6 +17,11 @@ function initGame() {
     }
 
     board.score = 0
+    board.rotationCount = 0
+    board.lastRotationCount = 0
+    comboCounter.count = 0
+
+    clearAll()
 
     for(var i = 0; i < sideLen; ++i) {
         table[i] = new Array(sideLen)
@@ -128,6 +133,18 @@ function deselectAll() {
         for(var row = 0; row < sideLen; ++row) {
             if(table[col][row])
                 table[col][row].selected = false
+        }
+    }
+}
+
+function clearAll() {
+    for(var col = 0; col < sideLen; ++col) {
+        if(table[col] == null)
+            continue
+
+        for(var row = 0; row < sideLen; ++row) {
+            if(table[col][row])
+                table[col][row].destroy()
         }
     }
 }

@@ -97,6 +97,7 @@ Rectangle {
 
         MouseArea {
             id: mouseArea
+            enabled: base.state == ""
             anchors.fill: board
             acceptedButtons: Qt.LeftButton | Qt.RightButton
 
@@ -184,7 +185,76 @@ Rectangle {
         anchors.right: board.left
     }
 
+    Button {
+        anchors {
+            bottom: scoreWidget.bottom
+            horizontalCenter: scoreWidget.right
+            horizontalCenterOffset: (base.width - scoreWidget.width) / 4
+        }
+        visible: base.state == ""
+        text: "Restart"
+
+        onClicked: {
+            Core.initGame()
+        }
+    }
+
+    Rectangle {
+        id: fadeRect
+        color: "#80000000"
+        anchors.fill: parent
+        visible: base.state != ""
+
+        Column {
+            anchors.centerIn: parent
+
+            Text {
+                id: titleText
+                color: "#ffffff"
+                font.family: "Malgun Gothic"
+                font.pixelSize: 72
+                width: parent.width
+                horizontalAlignment: "AlignHCenter"
+            }
+            Text {
+                id: subTitleText
+                color: "#ffffff"
+                font.family: "Malgun Gothic"
+                font.pixelSize: 36
+                width: parent.width
+                horizontalAlignment: "AlignHCenter"
+            }
+            Item {
+                width: parent.width
+                height: 40
+            }
+            Button {
+                id: startButton
+                text: "Yes"
+
+                onClicked: {
+                    base.state = ""
+                    Core.initGame()
+                }
+            }
+        }
+    }
+
+    states: [
+        State {
+            name: "start"
+            PropertyChanges { target: titleText; text: "Welcome!" }
+            PropertyChanges { target: subTitleText; text: "Are you ready?" }
+        },
+        State {
+            name: "gameOver"
+            PropertyChanges { target: titleText; text: "GAME OVER" }
+            PropertyChanges { target: subTitleText; text: "Restart?" }
+        }
+    ]
+
     Component.onCompleted: {
+        base.state = "start"
         Core.initGame()
     }
 }
